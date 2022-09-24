@@ -10,16 +10,16 @@ export const Calculator = () => {
   const handleSubmit = (e) => {
     // calling the api
     const url = "https://loverapi.herokuapp.com/api/v1/calculate";
+
     axios
       .get(url, {
         params: {
-          personA: { userName },
-          personB: { soulMate },
+          personA: userName,
+          personB: soulMate,
         },
       })
-      .then((res) => console.log(res.data.message))
+      .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
-    console.log(userName, soulMate);
   };
 
   return (
