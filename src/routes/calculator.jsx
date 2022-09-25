@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
-import { BsCalculator } from "react-icons/bs";
 import axios from "axios";
 import { HeartIcon } from "./../assets/hearticon";
 import { Link } from "react-router-dom";
@@ -13,7 +11,7 @@ export const Calculator = ({ createHistory }) => {
     message: "",
     result: 0,
   });
-  // {query: { name1, name2 }, result: {message, result}}
+
   const handleSubmit = (e) => {
     const url = "https://loverapi.herokuapp.com/api/v1/calculate";
 
@@ -27,6 +25,7 @@ export const Calculator = ({ createHistory }) => {
       .then((res) => {
         const { result, message } = res.data;
         setCompatibility({ result, message });
+
         createHistory({
           query: { name1: userName, name2: soulMate },
           result: { message, result },
@@ -71,10 +70,17 @@ export const Calculator = ({ createHistory }) => {
       </div>
 
       {!!compatibility.message && (
-        <div>
-          Here's your result:
-          {compatibility.result}. <br />
-          {compatibility.message}
+        <div className="w-full text-center md:p-auto p-[10%] text-white text-xl font-maven">
+          <h2 className="font-bold uppercase text-white ">Result</h2>
+          <p className=" font-bold text-white text-xl mb-2">
+            {compatibility.result < 50
+              ? `Eyaaaaaa!!! Omo, your compatibility score is:  ${compatibility.result} oo`
+              : `Awesome!!!! Your compatibility score is: ${compatibility.result}`}
+          </p>
+
+          <p className=" font-bold text-white text-2xl">
+            {compatibility.message}
+          </p>
         </div>
       )}
     </div>
