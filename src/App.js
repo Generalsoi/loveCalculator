@@ -2,10 +2,20 @@ import { RouterProvider, Route, Routes, BrowserRouter } from "react-router-dom";
 import { Loader } from "./routes/loader";
 import { Calculator } from "./routes/calculator";
 import { History } from "./routes/history";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [history, setHistory] = useState([]);
+  const [cache, setCache] = useState(
+    JSON.parse(localStorage.getItem("cache")) ?? {}
+  );
+
+  const addToCache = (item, key) => {
+    const currentCache = cache;
+    currentCache[key] = item;
+    setCache(currentCache);
+    localStorage.setItem("cache", JSON.stringify(currentCache));
+  };
 
   return (
     <Routes>
@@ -14,6 +24,8 @@ function App() {
         path="/calculator"
         element={
           <Calculator
+            cache={cache}
+            addToCache={addToCache}
             createHistory={(data) =>
               setHistory((history) => [...history, data])
             }

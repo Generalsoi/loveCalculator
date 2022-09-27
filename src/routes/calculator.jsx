@@ -4,7 +4,7 @@ import { HeartIcon } from "./../assets/hearticon";
 import { Link } from "react-router-dom";
 import { CalculateIcon } from "../assets/calculatorIcon";
 
-export const Calculator = ({ createHistory }) => {
+export const Calculator = ({ createHistory, cache, addToCache }) => {
   const [userName, setUserName] = useState("");
   const [soulMate, setSoulMate] = useState("");
   const [compatibility, setCompatibility] = useState({
@@ -15,23 +15,37 @@ export const Calculator = ({ createHistory }) => {
   const handleSubmit = (e) => {
     const url = "https://loverapi.herokuapp.com/api/v1/calculate";
 
-    axios
-      .get(url, {
-        params: {
-          personA: userName,
-          personB: soulMate,
-        },
-      })
-      .then((res) => {
-        const { result, message } = res.data;
-        setCompatibility({ result, message });
+    const key = `${userName.toLowerCase()}_${soulMate.toLowerCase()}`;
 
-        createHistory({
-          query: { name1: userName, name2: soulMate },
-          result: { message, result },
-        });
-      })
-      .catch((err) => console.log(err));
+    console.log(cache[key]);
+    if (cache[key]) {
+      const { result, message } = cache[key];
+      setCompatibility({ result, message });
+
+      createHistory({
+        query: { name1: userName, name2: soulMate },
+        result: { message, result },
+      });
+    } else {
+      axios
+        .get(url, {
+          params: {
+            personA: userName,
+            personB: soulMate,
+          },
+        })
+        .then((res) => {
+          const { result, message } = res.data;
+          addToCache({ result, message }, key);
+          setCompatibility({ result, message });
+
+          createHistory({
+            query: { name1: userName, name2: soulMate },
+            result: { message, result },
+          });
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -41,7 +55,7 @@ export const Calculator = ({ createHistory }) => {
           View History
         </button>
       </Link>
-      <div className="flex flex-col md:flex-row items-end text-white font-maven gap-3">
+      <div className="flex flex-col md:flex-row md:items-end items-center text-white font-maven gap-6">
         <div className="flex flex-col gap-2">
           <label htmlFor="yourName">First name</label>
           <input

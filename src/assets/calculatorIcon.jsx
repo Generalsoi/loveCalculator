@@ -7,9 +7,9 @@ export const CalculateIcon = ({ computedWidth = 16 }) => {
     <svg
       stroke="currentColor"
       fill="currentColor"
-      stroke-width="0"
+      strokeWidth="0"
       viewBox="0 0 16 16"
-      class=" text-white cursor-pointer hover:scale-125 transition-all duration-500"
+      className=" text-white cursor-pointer hover:scale-125 transition-all duration-500"
       height={computedHeight}
       width={computedWidth}
       xmlns="http://www.w3.org/2000/svg"
