@@ -35,13 +35,13 @@ export const Calculator = ({ createHistory }) => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col gap-12 items-center justify-center bg-red-700 relative">
+    <div className="w-full h-screen flex flex-col  items-center justify-center bg-red-700 relative">
       <Link to="/history">
         <button className="w-fit h-8 flex items-center justify-center text-white text-sm p-2 border border-white rounded fixed top-4 right-4">
           View History
         </button>
       </Link>
-      <div className="flex flex-col md:flex-row items-center text-white font-maven gap-3">
+      <div className="flex flex-col md:flex-row items-end text-white font-maven gap-3">
         <div className="flex flex-col gap-2">
           <label htmlFor="yourName">First name</label>
           <input
@@ -69,7 +69,7 @@ export const Calculator = ({ createHistory }) => {
         </div>
       </div>
 
-      <div onClick={handleSubmit}>
+      <div onClick={handleSubmit} className="mt-12">
         <CalculateIcon computedWidth={48} />
       </div>
 
