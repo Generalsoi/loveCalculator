@@ -21,8 +21,8 @@ export const Loader = () => {
           }, 1500)}
         </div>
       ) : (
-        <div className="bg-red-200 w-full h-screen font-maven font-bold flex flex-col items-center justify-center">
-          <h1 className="text-xl md:text-3xl font-extrabold mb-8">
+        <div className="bg-red-200 w-full h-screen font-maven font-bold flex flex-col items-center justify-center p-[6%] md:p-0">
+          <h1 className="text-xl md:text-3xl font-extrabold mb-8 text-center">
             Welcome to Onose's love calculator game
           </h1>
 
