@@ -13,7 +13,7 @@ export const History = ({ history }) => {
       <h1 className="font-bold text-3xl uppercase">History</h1>
       {history.map((content) => (
         <p className="flex gap-3 items-center mt-4">
-          {content.query.name1} <HeartIcon /> {content.query.name2}{" "}
+          {content.query.name1} <HeartIcon /> {content.query.name2}
         </p>
       ))}
     </div>
