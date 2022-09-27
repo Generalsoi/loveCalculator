@@ -11,20 +11,22 @@ export const History = ({ history }) => {
         </button>
       </Link>
       <h1 className="font-bold text-3xl uppercase">History</h1>
-      {history.map((content, index) => (
-        <div
-          key={index}
-          className="border border-black rounded-lg p-3 md:p-6 w-full md:w-[60%] flex flex-col justify-center items-start mt-5"
-        >
-          <p className="flex gap-3 items-center mt-4">
-            {content.query.name1} <HeartIcon /> {content.query.name2}
-          </p>
+      <div className="w-full overflow-y-scroll flex flex-col items-center ">
+        {history.map((content, index) => (
+          <div
+            key={index}
+            className="border border-black rounded-lg p-3 md:p-6 w-full md:w-[60%] flex flex-col justify-center items-start mt-5"
+          >
+            <p className="flex gap-3 items-center mt-4">
+              {content.query.name1} <HeartIcon /> {content.query.name2}
+            </p>
 
-          <p className="font-extrabold text-lg">{content.result.result}</p>
+            <p className="font-extrabold text-lg">{content.result.result}</p>
 
-          <p>{content.result.message}</p>
-        </div>
-      ))}
+            <p>{content.result.message}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

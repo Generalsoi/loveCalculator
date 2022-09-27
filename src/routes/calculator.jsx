@@ -55,8 +55,8 @@ export const Calculator = ({ createHistory, cache, addToCache }) => {
           View History
         </button>
       </Link>
-      <div className="flex flex-col md:flex-row md:items-end items-center text-white font-maven gap-6">
-        <div className="flex flex-col gap-2">
+      <div className="flex flex-col md:flex-row items-center md:items-end w-full md:w-auto text-white font-maven gap-6 p-[10%] md:p-0">
+        <div className="flex flex-col gap-2 w-full">
           <label htmlFor="yourName">First name</label>
           <input
             type="text"
@@ -71,7 +71,7 @@ export const Calculator = ({ createHistory, cache, addToCache }) => {
           <HeartIcon computedWidth={48} />
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 w-full">
           <label htmlFor="soulMateName">Second name</label>
           <input
             type="text"
