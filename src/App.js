@@ -1,8 +1,8 @@
-import { RouterProvider, Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Loader } from "./routes/loader";
 import { Calculator } from "./routes/calculator";
 import { History } from "./routes/history";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   const [history, setHistory] = useState([]);
